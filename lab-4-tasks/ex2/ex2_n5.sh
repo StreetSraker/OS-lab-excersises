@@ -1,2 +1,3 @@
 gcc ex2.c -o ex2
-./ex2 5 & pstree -p $!
+./ex2 5 &
+pstree -p
