@@ -4,8 +4,6 @@
 #include <unistd.h>
 #include <sys/types.h>
 
-extern char **environ;
-
 int main() {
     char line[1024];
     char *args[64];
@@ -28,27 +26,25 @@ int main() {
         }
         args[i] = NULL;
 
-        if (args[0] == NULL) continue;
+        if (args[0] == NULL) {
+            printf("\n");
+            continue;
+        }
 
         if (strcmp(args[0], "exit") == 0) break;
 
         pid_t pid = fork();
 
         if (pid == 0) {
-            char full_path[1024];
-            if (args[0][0] == '/' || args[0][0] == '.') {
-                strcpy(full_path, args[0]);
-            } else {
-                snprintf(full_path, sizeof(full_path), "/bin/%s", args[0]);
-            }
-
-            execve(full_path, args, environ);
-            
+            execvp(args[0], args);
             perror("Error");
             exit(1);
         } 
         else if (pid > 0) {
             printf("[Background process, PID: %d]\n", pid);
+            fflush(stdout); 
+            
+            usleep(10000); 
         }
     }
     return 0;
