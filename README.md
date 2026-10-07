@@ -1,6 +1,6 @@
 
 ### Innopolis email:
-    - al.kim@innopolis.university
+    al.kim@innopolis.university
   
 ### Current progress:
 - [x] Exercise 1
