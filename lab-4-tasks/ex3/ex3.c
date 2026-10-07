@@ -9,7 +9,7 @@ int main() {
     char *args[64];
 
     while (1) {
-        printf("WhatTheShell> ");
+        printf("> ");
         fflush(stdout);
 
         if (fgets(line, sizeof(line), stdin) == NULL) {
