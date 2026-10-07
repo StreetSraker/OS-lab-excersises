@@ -4,7 +4,6 @@
 #include <unistd.h>
 #include <sys/types.h>
 
-// Объявляем внешнюю переменную окружения (нужна для execve)
 extern char **environ;
 
 int main() {
